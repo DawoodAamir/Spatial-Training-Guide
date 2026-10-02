@@ -15,6 +15,8 @@ for runtime, devices in state['devices'].items():
 raise SystemExit('Install the visionOS 27 simulator runtime in Xcode before running this workflow.')
 PY
 )}"
+# Complete the first simulator boot before XCTest starts its launch timeout.
+xcrun simctl bootstatus "$simulator_id" -b
 result="build/Workflow-$(date +%s).xcresult"
 xcodebuild -project 'Spatial Training Guide.xcodeproj' -scheme 'Spatial Training Guide' -destination "platform=visionOS Simulator,id=$simulator_id" -derivedDataPath build/DerivedData test -collect-test-diagnostics never -resultBundlePath "$result"
 xcrun xcresulttool export attachments --path "$result" --output-path build/Screenshots
