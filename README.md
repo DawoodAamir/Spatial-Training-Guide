@@ -35,3 +35,9 @@ bash Scripts/test-ui.sh
 [Verification](Docs/Verification.md) records performed checks and device limits. See [privacy](PRIVACY.md) and [contributing](CONTRIBUTING.md). MIT licensed.
 
 References: [visionOS design](https://developer.apple.com/design/human-interface-guidelines/designing-for-visionos) and [RealityKit](https://developer.apple.com/documentation/realitykit).
+
+## Native workflow
+
+![Guided checkpoint workspace](Docs/Workspace.png)
+
+![Original exploded model beside the lesson](Docs/Volume.png)
