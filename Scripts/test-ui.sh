@@ -18,5 +18,5 @@ PY
 # Complete the first simulator boot before XCTest starts its launch timeout.
 xcrun simctl bootstatus "$simulator_id" -b
 result="build/Workflow-$(date +%s).xcresult"
-python3 Scripts/capture-workflow.py "$simulator_id" xcodebuild -project 'Spatial Training Guide.xcodeproj' -scheme 'Spatial Training Guide' -destination "platform=visionOS Simulator,id=$simulator_id" -derivedDataPath build/DerivedData test -maximum-concurrent-test-simulator-destinations 1 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath "$result"
+python3 Scripts/capture-workflow.py "$simulator_id" com.dd.spatialtrainingguide.uitests.xctrunner xcodebuild -project 'Spatial Training Guide.xcodeproj' -scheme 'Spatial Training Guide' -destination "platform=visionOS Simulator,id=$simulator_id" -derivedDataPath build/DerivedData test -maximum-concurrent-test-simulator-destinations 1 -parallel-testing-enabled NO -collect-test-diagnostics never -resultBundlePath "$result"
 xcrun xcresulttool export attachments --path "$result" --output-path build/Attachments

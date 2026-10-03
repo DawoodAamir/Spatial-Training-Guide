@@ -4,10 +4,18 @@ import SwiftUI
 @main struct SpatialTrainingGuideApp: App {
   @State private var model = TrainingModel()
   var body: some SwiftUI.Scene {
-    WindowGroup { TrainingWorkspace(model: model).frame(minWidth: 860, minHeight: 650) }
-      .defaultSize(width: 1000, height: 760)
+    WindowGroup(id: "workspace") {
+      TrainingWorkspace(model: model).frame(minWidth: 860, minHeight: 650)
+    }
+    .defaultSize(width: 1000, height: 760)
     WindowGroup(id: "assembly") { AssemblyScene(model: model) }
       .windowStyle(.volumetric).defaultSize(width: 0.9, height: 1, depth: 0.9, in: .meters)
+      .defaultWindowPlacement { _, context in
+        if let workspace = context.windows.first(where: { $0.id == "workspace" }) {
+          return WindowPlacement(.trailing(workspace))
+        }
+        return WindowPlacement(.utilityPanel)
+      }
   }
 }
 struct TrainingWorkspace: View {
