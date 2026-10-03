@@ -183,7 +183,7 @@ struct AssemblyScene: View {
         Toggle(
           "Exploded view", isOn: Binding(get: { model.exploded }, set: { model.exploded = $0 })
         ).toggleStyle(.button)
-      }.padding().glassBackgroundEffect()
+      }.padding().glassBackgroundEffect().accessibilityIdentifier("assemblyControls")
     }
   }
   @MainActor func updateParts() {

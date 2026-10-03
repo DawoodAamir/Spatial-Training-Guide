@@ -19,10 +19,17 @@ import XCTest
       app.staticTexts["Step 2 · Fit the column"].waitForExistence(timeout: 15), app.debugDescription
     )
     app.buttons["part-column"].tap()
-    let screenshot = XCTAttachment(screenshot: app.screenshot())
+    let screenshot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
     screenshot.name = "Guided assembly"
     screenshot.lifetime = .keepAlways
     add(screenshot)
     app.buttons["Open 3D model"].tap()
+    XCTAssertTrue(
+      app.descendants(matching: .any)["assemblyControls"].waitForExistence(timeout: 15),
+      app.debugDescription)
+    let volume = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+    volume.name = "Exploded assembly"
+    volume.lifetime = .keepAlways
+    add(volume)
   }
 }
